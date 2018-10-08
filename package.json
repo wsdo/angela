@@ -1,0 +1,27 @@
+{
+  "name": "ssr-kit",
+  "version": "1.0.0",
+  "description": "* config * const * store * src * components * containers * actions * router * views * reducers * utils * build ``` touch index.js App.js readme.md mkdir -p build src/{const,store,config,component,container,action,router,view,reducer,util,server} ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm-run-all --parallel dev:**",
+    "dev:start": "nodemon --watch build --exec node \"./build/bundle.js\"",
+    "dev:build": "webpack --config config/webpack.config.server.js --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "express": "^4.16.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.4.1",
+    "webpack": "^4.16.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
