@@ -4,8 +4,8 @@ import { render } from './utils';
 const app = express();
 app.use(express.static('public'));
 
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
   res.send(render(req));
 });
 
-var server = app.listen(3000);
+const server = app.listen(3000);
