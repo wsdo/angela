@@ -15,29 +15,30 @@
 
 
 const path = require('path')
-const paths = require('./paths');
 const webpack = require('webpack')
-const baseConfig = require('./webpack.config.base')
+
 const isDev = process.env.NODE_ENV === 'development'
 const webpackMerge = require('webpack-merge')
 const HTMLPlugin = require('html-webpack-plugin')
+const baseConfig = require('./webpack.config.base')
+const paths = require('./paths');
 
 const config = webpackMerge(baseConfig, {
   mode: 'development',
   devtool: '#cheap-module-eval-source-map',
   entry: {
-    app: paths.appIndexJs
+    app: paths.appIndexJs,
   },
   output: {
     filename: '[name].[hash].js',
     path: path.join(__dirname, '../dist'),
-    publicPath: '/public/'
+    publicPath: '/public/',
   },
   plugins: [
     new HTMLPlugin({
-      template: path.join(__dirname, '../src/index.html')
-    })
-  ]
+      template: path.join(__dirname, '../src/index.html'),
+    }),
+  ],
 })
 
 // const config = {
@@ -85,12 +86,12 @@ if (isDev) {
     hot: true,
     // 显示黑色的弹窗
     overlay: {
-      error: true
+      error: true,
     },
     publicPath: '/public/',
     historyApiFallback: {
-      index: '/public/index.html'
-    }
+      index: '/public/index.html',
+    },
   }
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }

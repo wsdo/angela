@@ -3,12 +3,12 @@ import thunk from 'redux-thunk';
 import { reducer as homeReducer } from '../containers/Home/store';
 
 const reducer = combineReducers({
-  home: homeReducer
+  home: homeReducer,
 });
 
+export const getStore = () => createStore(reducer, applyMiddleware(thunk))
 
-const getStore = () => {
-  return createStore(reducer, applyMiddleware(thunk));
+export const getClientStore = () => {
+  const defaultState = window.context.state;
+  return createStore(reducer, defaultState, applyMiddleware(thunk));
 }
-
-export default getStore;

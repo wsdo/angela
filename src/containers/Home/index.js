@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header';
 import { connect } from 'react-redux';
+import Header from '../../components/Header';
 import { getHomeList } from './store/actions';
 
 class Home extends Component {
-
   getList() {
     const { list } = this.props;
     return list.map(item => <div key={item.id}>{item.title}</div>)
@@ -27,15 +26,16 @@ class Home extends Component {
     this.props.getHomeList();
   }
 }
+Home.loadData = store => store.dispatch(getHomeList())
 
 const mapStateToProps = state => ({
-  list: state.home.newsList
+  list: state.home.newsList,
 });
 
 const mapDispatchToProps = dispatch => ({
   getHomeList() {
     dispatch(getHomeList());
-  }
+  },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

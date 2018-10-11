@@ -20,21 +20,22 @@
 
 import React from 'react';
 import ReactDom from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import Routes from './routes';
-import getStore from './store';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import routes from './routes';
+import { getClientStore, getStore } from './store';
+// const store = getStore();
 const store = getStore();
-const App = () => {
-  return (
+const App = () => (
     <Provider store={store}>
       <BrowserRouter>
         <div>
-          {Routes}
+          {routes.map(route => (
+            <Route {...route} />
+          ))}
         </div>
       </BrowserRouter>
     </Provider>
-  )
-}
+)
 
 ReactDom.hydrate(<App />, document.getElementById('root'))

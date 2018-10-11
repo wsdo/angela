@@ -1,12 +1,17 @@
 const path = require('path')
+const paths = require('./paths');
 
 module.exports = {
   output: {
     path: path.join(__dirname, '../dist'),
-    publicPath: '/public/'
+    publicPath: '/public/',
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    modules: [
+      path.resolve(paths.appSrc),
+      'node_modules',
+    ],
   },
   module: {
     rules: [
@@ -20,15 +25,15 @@ module.exports = {
       // },
       {
         test: /.jsx$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /.js$/,
         loader: 'babel-loader',
         exclude: [
-          path.join(__dirname, '../node_modules')
-        ]
-      }
-    ]
-  }
+          path.join(__dirname, '../node_modules'),
+        ],
+      },
+    ],
+  },
 }
